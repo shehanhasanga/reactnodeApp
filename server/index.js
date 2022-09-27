@@ -1,4 +1,5 @@
-require('dotenv').config();
+var env = require('dotenv');
+env.config();
 const express = require('express');
 const chalk = require('chalk');
 const compression = require('compression');
@@ -9,10 +10,11 @@ const helmet = require('helmet');
 const keys = require('./config/keys');
 const routes = require('./routes');
 const socket = require('./socket');
-const setupDB = require('./utils/db');
+// const setupDB = require('./utils/db');
 
 const { port } = keys;
 const app = express();
+const sqlize = require('./config/sqlize/sequelize')
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
@@ -25,7 +27,7 @@ app.use(
 app.use(cors());
 app.use(express.static(path.resolve(__dirname, '../dist')));
 
-setupDB();
+// setupDB();
 require('./config/passport')(app);
 app.use(routes);
 

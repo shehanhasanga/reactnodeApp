@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 
 const { ROLE_ADMIN } = require('../constants');
 const keys = require('../config/keys');
-const User = mongoose.model('User');
+const User = require('../models/user')
 
 const support = require('./support');
 
@@ -19,7 +19,7 @@ const authHandler = async (socket, next) => {
     const { secret } = keys.jwt;
     const payload = jwt.verify(tokenValue, secret);
     const id = payload.id.toString();
-    const user = await User.findById(id);
+    const user = await User.getUserById(id);
 
     if (!user) {
       return next(new Error('no user found'));
