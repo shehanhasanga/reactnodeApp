@@ -6,7 +6,9 @@ const ExtractJwt = require('passport-jwt').ExtractJwt;
 const mongoose = require('mongoose');
 const User = require('../models/user')
 const keys = require('./keys');
-
+const {
+    db
+} = require('../config/sqlize/sequelize')
 const { google, facebook } = keys;
 const { serverURL, apiURL } = keys.app;
 
@@ -18,18 +20,18 @@ opts.jwtFromRequest = ExtractJwt.fromAuthHeaderAsBearerToken();
 opts.secretOrKey = secret;
 
 passport.use(
-  new JwtStrategy(opts, (payload, done) => {
-    User.findById(payload.id)
-      .then(user => {
-        if (user) {
-          return done(null, user);
-        }
+  new JwtStrategy(opts, async (payload, done) => {
+      try {
+          const user = await db.user.findOne({ where: { id: payload.data.id} });
+          if (user) {
+              return done(null, user.dataValues);
+          }else {
+              return done(null, false);
+          }
+      }catch (err) {
+          return done(err, false);
+      }
 
-        return done(null, false);
-      })
-      .catch(err => {
-        return done(err, false);
-      });
   })
 );
 
