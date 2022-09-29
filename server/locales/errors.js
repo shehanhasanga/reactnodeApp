@@ -7,7 +7,10 @@ const ErrorTypes =  {
     EMAIL_NOT_FOUND : "EMAIL_NOT_FOUND",
     USER_NOT_FOUND_BY_EMAIL : "USER_NOT_FOUND_BY_EMAIL",
     USER_RESET_TOKEN_EXPIRED : "USER_RESET_TOKEN_EXPIRED",
-    OLD_PASSWORD_INCORRECT : "OLD_PASSWORD_INCORRECT"
+    OLD_PASSWORD_INCORRECT : "OLD_PASSWORD_INCORRECT",
+    BRAND_NOT_FOUND : "BRAND_NOT_FOUND",
+    PRODUCT_SKU_IS_ALREADY_EXISTS : "PRODUCT_SKU_IS_ALREADY_EXISTS",
+    PRODUCT_IS_NOT_FOUND : "PRODUCT_IS_NOT_FOUND"
 }
 
 const ErrorCodes = {
@@ -37,6 +40,18 @@ const ErrorCodes = {
     },
     [ErrorTypes.OLD_PASSWORD_INCORRECT] : {
         message :  'Please enter your correct old password.',
+        status : 400
+    }  ,
+    [ErrorTypes.BRAND_NOT_FOUND] : {
+        message :  'Could not found the brand.',
+        status : 400
+    },
+    [ErrorTypes.PRODUCT_SKU_IS_ALREADY_EXISTS] : {
+        message :  'Sku or slug is already in use.',
+        status : 400
+    },
+    [ErrorTypes.PRODUCT_IS_NOT_FOUND] : {
+        message :  'Product is not available in the system.',
         status : 400
     }
 }

@@ -19,8 +19,14 @@ db.Sequelize = Sequelize;
 db.sequelize = sequelize
 db.user = require('../../models/sqlize/user')(sequelize, Sequelize);
 db.merchant = require('../../models/sqlize/merchant')(sequelize, Sequelize);
+db.brand = require('../../models/sqlize/brand')(sequelize, Sequelize);
+db.product = require('../../models/sqlize/product')(sequelize, Sequelize);
 db.merchant.hasOne(db.user);
 db.user.belongsTo(db.merchant);
+
+// db.merchant.hasOne(db.brand);
+db.brand.belongsTo(db.merchant);
+db.product.belongsTo(db.brand);
 
 // Initialize data input models
 // db.district = require('../models/district')(sequelize, Sequelize);
