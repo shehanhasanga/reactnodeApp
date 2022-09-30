@@ -21,12 +21,40 @@ db.user = require('../../models/sqlize/user')(sequelize, Sequelize);
 db.merchant = require('../../models/sqlize/merchant')(sequelize, Sequelize);
 db.brand = require('../../models/sqlize/brand')(sequelize, Sequelize);
 db.product = require('../../models/sqlize/product')(sequelize, Sequelize);
+db.category = require('../../models/sqlize/category')(sequelize, Sequelize);
+db.productcategory = require('../../models/sqlize/productcategory')(sequelize, Sequelize);
+db.order = require('../../models/sqlize/order')(sequelize, Sequelize);
+db.cart = require('../../models/sqlize/cart')(sequelize, Sequelize);
+db.cartproducts = require('../../models/sqlize/cartproducts')(sequelize, Sequelize);
+
 db.merchant.hasOne(db.user);
 db.user.belongsTo(db.merchant);
 
 // db.merchant.hasOne(db.brand);
 db.brand.belongsTo(db.merchant);
 db.product.belongsTo(db.brand);
+
+db.product.belongsToMany(db.category, {
+	through: db.productcategory,
+	foreignKey: 'productid'
+});
+db.category.belongsToMany(db.product, {
+	through: db.productcategory,
+	foreignKey: 'categoryid'
+});
+
+db.order.belongsTo(db.user);
+db.order.belongsTo(db.cart);
+db.cart.belongsTo(db.product);
+
+db.product.belongsToMany(db.cart, {
+	through: db.cartproducts,
+	foreignKey: 'product'
+});
+db.cart.belongsToMany(db.product, {
+	through: db.cartproducts,
+	foreignKey: 'cartid'
+});
 
 // Initialize data input models
 // db.district = require('../models/district')(sequelize, Sequelize);

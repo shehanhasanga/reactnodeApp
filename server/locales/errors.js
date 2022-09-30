@@ -10,7 +10,8 @@ const ErrorTypes =  {
     OLD_PASSWORD_INCORRECT : "OLD_PASSWORD_INCORRECT",
     BRAND_NOT_FOUND : "BRAND_NOT_FOUND",
     PRODUCT_SKU_IS_ALREADY_EXISTS : "PRODUCT_SKU_IS_ALREADY_EXISTS",
-    PRODUCT_IS_NOT_FOUND : "PRODUCT_IS_NOT_FOUND"
+    PRODUCT_IS_NOT_FOUND : "PRODUCT_IS_NOT_FOUND",
+    CATEGORY_IS_NOT_FOUND : "CATEGORY_IS_NOT_FOUND"
 }
 
 const ErrorCodes = {
@@ -52,6 +53,10 @@ const ErrorCodes = {
     },
     [ErrorTypes.PRODUCT_IS_NOT_FOUND] : {
         message :  'Product is not available in the system.',
+        status : 400
+    },
+    [ErrorTypes.CATEGORY_IS_NOT_FOUND] : {
+        message :  'No Category found.',
         status : 400
     }
 }

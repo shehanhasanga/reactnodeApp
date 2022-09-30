@@ -14,12 +14,12 @@ const mailgun = require('../../utils/mailgun');
 const keys = require('../../config/keys');
 
 const { secret, tokenLife } = keys.jwt;
-const userController = require('../../controllers/userConteroller')
+const orderController = require('../../controllers/orderController')
 
-router.route('/me').get(auth, userController.me);
-router.route('/search').get( userController.search);
-router.route('/').get( userController.getUsers);
-router.route('/').put( userController.updateUser);
+router.route('/add').post(auth, orderController.addOrder);
+// router.route('/search').get( userController.search);
+// router.route('/').get( userController.getUsers);
+// router.route('/').put( userController.updateUser);
 
 
 

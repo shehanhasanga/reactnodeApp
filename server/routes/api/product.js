@@ -25,6 +25,7 @@ router.route('/list/select').get( productController.getAllProducts);
 router.route('/add').post(   upload.single('image'),productController.addProduct);
 router.route('/').get( productController.getAllProducts);
 router.route('/:id').get( productController.getProduct);
+router.route('/item/:id').get( productController.getProduct);
 router.route('/:id').put( productController.updateProduct);
 router.route('/:id/active').put( productController.updateActive);
 router.route('/delete/:id').put( productController.deleteProduct);

@@ -14,15 +14,13 @@ const mailgun = require('../../utils/mailgun');
 const keys = require('../../config/keys');
 
 const { secret, tokenLife } = keys.jwt;
-const userController = require('../../controllers/userConteroller')
+const categoryController = require('../../controllers/categoryController')
 
-router.route('/me').get(auth, userController.me);
-router.route('/search').get( userController.search);
-router.route('/').get( userController.getUsers);
-router.route('/').put( userController.updateUser);
-
-
-
+router.route('/add').post(categoryController.addCategory);
+router.route('/list').get(categoryController.getCategoryList);
+router.route('/').get(categoryController.getCategoryList);
+router.route('/:id').get(categoryController.getCategory);
+router.route('/:id').put(categoryController.updateCategory);
 
 
 
