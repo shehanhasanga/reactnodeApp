@@ -26,6 +26,12 @@ db.productcategory = require('../../models/sqlize/productcategory')(sequelize, S
 db.order = require('../../models/sqlize/order')(sequelize, Sequelize);
 db.cart = require('../../models/sqlize/cart')(sequelize, Sequelize);
 db.cartproducts = require('../../models/sqlize/cartproducts')(sequelize, Sequelize);
+db.address = require('../../models/sqlize/address')(sequelize, Sequelize);
+db.review = require('../../models/sqlize/review')(sequelize, Sequelize);
+
+db.address.belongsTo(db.user);
+db.review.belongsTo(db.user);
+db.review.belongsTo(db.product);
 
 db.merchant.hasOne(db.user);
 db.user.belongsTo(db.merchant);

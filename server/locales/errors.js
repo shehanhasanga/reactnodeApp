@@ -11,7 +11,10 @@ const ErrorTypes =  {
     BRAND_NOT_FOUND : "BRAND_NOT_FOUND",
     PRODUCT_SKU_IS_ALREADY_EXISTS : "PRODUCT_SKU_IS_ALREADY_EXISTS",
     PRODUCT_IS_NOT_FOUND : "PRODUCT_IS_NOT_FOUND",
-    CATEGORY_IS_NOT_FOUND : "CATEGORY_IS_NOT_FOUND"
+    CATEGORY_IS_NOT_FOUND : "CATEGORY_IS_NOT_FOUND",
+    ADDRESS_IS_NOT_FOUND : "ADDRESS_IS_NOT_FOUND",
+    REVIEW_IS_NOT_FOUND : "REVIEW_IS_NOT_FOUND",
+
 }
 
 const ErrorCodes = {
@@ -57,6 +60,14 @@ const ErrorCodes = {
     },
     [ErrorTypes.CATEGORY_IS_NOT_FOUND] : {
         message :  'No Category found.',
+        status : 400
+    },
+    [ErrorTypes.ADDRESS_IS_NOT_FOUND] : {
+        message :  'Cannot find Address .',
+        status : 400
+    },
+    [ErrorTypes.REVIEW_IS_NOT_FOUND] : {
+        message :  'Cannot find review .',
         status : 400
     }
 }
